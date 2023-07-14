@@ -1,0 +1,41 @@
+table {
+  margin-left: 0.5%;
+  width: 99%;
+}
+
+th {
+  background-color: black;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  font-weight: bold;
+}
+
+tr {
+  color: #007A33;
+  height: 50px;
+}
+
+tr:nth-child(even) {
+  background-color: #007A33;
+  color: white;
+}
+
+tr:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+p {
+  margin-left: 0.5%;
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: large; 
+}
+
+h1 {
+  margin-left: 0.5%;
+}
+
