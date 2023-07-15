@@ -67,7 +67,8 @@ fetch('https://api-nba-v1.p.rapidapi.com/players?team=2&season=2022', options)
 		var html = "<table><tr>";
 		for (let i = 0; i < completeRoster.length; i++) {
 			if (i != 0) {
-				html += "</tr><tr>"
+				html += "</tr><tr data-href='https://mshxth.github.io/Celtics-Tracker/" 
+				+ getLastName(completeRoster[i][0]) + "'>";
 			}
 			for (let j = 0; j < completeRoster[i].length; j++) {
 				if (i == 0) {
@@ -85,6 +86,16 @@ fetch('https://api-nba-v1.p.rapidapi.com/players?team=2&season=2022', options)
 
 		html += "</tr></table>";
 		document.getElementById("container").innerHTML = html;
+
+		document.addEventListener("DOMContentLoaded", () => {
+			const rows = document.querySelectorAll("tr[data-href]");
+
+			rows.forEach(row => {
+				row.addEventListener("click", () => {
+					window.location.href = row.dataset.href;
+				});
+			});
+		})
   })
 	.catch(err => console.error(err));
 
@@ -123,6 +134,27 @@ function maxsort(roster, x) {
 		roster[i] = temp;
 	}
 }
+
+function getLastName(name) {
+
+	if (name == "Robert Williams III") {
+		return "williamsiii.html";
+	}
+	let ret = name.substring(findSpaceIndex(name) + 1) + ".html";
+	return ret.toLowerCase();
+	
+	
+	function findSpaceIndex(name) {
+		for (let i = 0; i < name.length; i++) {
+			if (name.substring(i, i + 1) == " ") {
+				return i;
+			}
+		}
+		return -1;
+	}
+}
+
+
 
 
 
