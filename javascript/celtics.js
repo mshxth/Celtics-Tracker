@@ -67,7 +67,7 @@ fetch('https://api-nba-v1.p.rapidapi.com/players?team=2&season=2022', options)
 		var html = "<table><tr>";
 		for (let i = 0; i < completeRoster.length; i++) {
 			if (i != 0) {
-				html += "</tr><tr data-href='https://mshxth.github.io/Celtics-Tracker/" 
+				html += "</tr><tr href='https://mshxth.github.io/Celtics-Tracker/" 
 				+ getLastName(completeRoster[i][0]) + "'>";
 			}
 			for (let j = 0; j < completeRoster[i].length; j++) {
@@ -146,7 +146,7 @@ function getLastName(name) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	const rows = document.querySelectorAll("tr[data-href]");
+	const rows = document.querySelectorAll("tr[href]");
 
 		rows.forEach(row => {
 			row.addEventListener("click", () => {
