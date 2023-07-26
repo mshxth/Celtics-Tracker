@@ -61,34 +61,91 @@ fetch('https://api-nba-v1.p.rapidapi.com/players?team=2&season=2022', options)
 			}
 		}
 
-		maxSortByBirthday(completeRoster);
+		sort(completeRoster, 0);
 		
 		
 		
-		var html = "<table><tr>";
-		for (let i = 0; i < completeRoster.length; i++) {
-			if (i != 0) {
-				html += "</tr><tr data-href='https://mshxth.github.io/Celtics-Tracker/" 
-				+ getLastName(completeRoster[i][0]) + "'>";
-			}
-			for (let j = 0; j < completeRoster[i].length; j++) {
-				if (i == 0) {
-					html += '<th>';
-					html += completeRoster[i][j];
-					html += '</th>';
-				}
-				else {
-					html += '<td>';
-					html += completeRoster[i][j];
-					html += '</td>';
-				}
-			}
-		}
+		
+var headerHtml = "<thead><tr>";
+for (let i = 0; i < completeRoster[0].length; i++) {
+  headerHtml += `<th data-index='${i}'>`; // Set data-index for each header
+  headerHtml += completeRoster[0][i];
+  headerHtml += '</th>';
+}
+headerHtml += "</tr></thead>";
 
-		html += "</tr></table>";
-		document.getElementById("container").innerHTML = html;
+var bodyHtml = "<tbody>";
+for (let i = 1; i < completeRoster.length; i++) {
+  bodyHtml += "<tr data-href='https://mshxth.github.io/Celtics-Tracker/" 
+    + getLastName(completeRoster[i][0]) + "'>";
+  for (let j = 0; j < completeRoster[i].length; j++) {
+    bodyHtml += '<td>';
+    bodyHtml += completeRoster[i][j];
+    bodyHtml += '</td>';
+  }
+  bodyHtml += "</tr>";
+}
+bodyHtml += "</tbody>";
 
-		
+var tableHtml = "<table id='sortable-table'>" + headerHtml + bodyHtml + "</table>";
+document.getElementById("container").innerHTML = tableHtml;
+
+const rows = document.querySelectorAll("tr[data-href]");
+rows.forEach(row => {
+	row.addEventListener("click", () => {
+		window.location.href = row.dataset.href;
+	});
+});
+
+// Function to rebuild only the table body after sorting
+function rebuildTableBody(roster) {
+  const tableBody = document.querySelector('#sortable-table tbody');
+  tableBody.innerHTML = '';
+  for (let i = 1; i < roster.length; i++) {
+    const row = document.createElement('tr');
+    row.setAttribute('data-href', `https://mshxth.github.io/Celtics-Tracker/${getLastName(roster[i][0])}`);
+    for (let j = 0; j < roster[i].length; j++) {
+      const cell = document.createElement('td');
+      cell.textContent = roster[i][j];
+      row.appendChild(cell);
+    }
+    tableBody.appendChild(row);
+  }
+}
+
+// Event listeners for each header
+const headers = document.querySelectorAll('#sortable-table th');
+headers.forEach((header) => {
+  header.addEventListener('click', () => {
+    const columnIndex = parseInt(header.getAttribute('data-index'));
+    const isAscending = !header.classList.contains('asc');
+    headers.forEach((h) => h.classList.remove('asc'));
+    if (isAscending) {
+      header.classList.add('asc');
+			if (columnIndex == 1) {
+				sortByPosition(completeRoster);
+			}
+			else if (columnIndex == 7) {
+				sortByBirthday(completeRoster);
+			}
+			else {
+				sort(completeRoster, columnIndex); // Sort in ascending order
+			}
+    } else {
+      header.classList.remove('asc');
+      if (columnIndex == 1) {
+				maxSortByPosition(completeRoster);
+			}
+			else if (columnIndex == 7) {
+				maxSortByBirthday(completeRoster);
+			}
+			else {
+				maxSort(completeRoster, columnIndex); // Sort in descending order
+			}
+    }
+    rebuildTableBody(completeRoster); // Rebuild the table body after sorting
+  });
+});
   })
 	.catch(err => console.error(err));
 
@@ -114,7 +171,7 @@ function sort(roster, x) {
 	}
 }
 
-function maxsort(roster, x) {
+function maxSort(roster, x) {
 	for (let i = 1; i < roster.length - 1; i++) {
 		let max = i;
 		for (let j = i + 1; j < roster.length; j++) {
@@ -221,15 +278,8 @@ function getLastName(name) {
 	}
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-	const rows = document.querySelectorAll("tr[data-href]");
 
-	rows.forEach(row => {
-		row.addEventListener("click", () => {
-			window.location.href = row.dataset.href;
-		});
-	});
-})
+
 
 
 
