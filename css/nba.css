@@ -40,14 +40,14 @@ h1 {
 }
 
 /* Add a caret icon for the sorted header */
-.sorted::before {
-  content: "▲"; /* Upward-pointing caret (▲) for ascending sort */
+.sorted::after {
+  content: "▼"; /* Upward-pointing caret (▲) for ascending sort */
   margin-left: 5px;
 }
 
 /* Add a caret icon for the sorted header */
-.sorted.desc::before {
-  content: "▼"; /* Downward-pointing caret (▼) for descending sort */
+.sorted.desc::after {
+  content: "▲"; /* Downward-pointing caret (▼) for descending sort */
   margin-left: 5px;
 }
 
