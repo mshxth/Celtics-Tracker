@@ -112,9 +112,10 @@ headers.forEach((header) => {
   header.addEventListener('click', () => {
     const columnIndex = parseInt(header.getAttribute('data-index'));
     const isAscending = !header.classList.contains('asc');
-    headers.forEach((h) => h.classList.remove('asc'));
+    headers.forEach((h) => h.classList.remove('asc', 'sorted', 'desc'));
     if (isAscending) {
-      header.classList.add('asc');
+	header.classList.add('asc', 'sorted');
+	header.classList.add('asc');
 			if (columnIndex == 1) {
 				sortByPosition(completeRoster);
 			}
@@ -125,6 +126,7 @@ headers.forEach((header) => {
 				sort(completeRoster, columnIndex); // Sort in ascending order
 			}
     } else {
+      header.classList.add('desc', 'sorted');
       header.classList.remove('asc');
       if (columnIndex == 1) {
 				maxSortByPosition(completeRoster);
