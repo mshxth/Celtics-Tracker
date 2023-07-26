@@ -138,7 +138,7 @@ function sortByPosition(roster) {
 	for (let i = 1; i < roster.length - 1; i++) {
 		let min = i;
 		for (let j = i + 1; j < roster.length; j++) {
-			if (arr.indexOf(roster[j][1] < arr.indexOf(roster[j][1]) {
+			if (arr.indexOf(roster[j][1] < arr.indexOf(roster[j][1]))) {
 				min = j;
 			}
 		}
