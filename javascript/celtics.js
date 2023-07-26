@@ -61,7 +61,7 @@ fetch('https://api-nba-v1.p.rapidapi.com/players?team=2&season=2022', options)
 			}
 		}
 
-		sort(completeRoster, 2);
+		maxSortByBirthday(completeRoster);
 		
 		
 		
@@ -141,6 +141,65 @@ function sortByPosition(roster) {
 		roster[min] = roster[i];
 		roster[i] = temp;
 	}
+}
+
+function maxSortByPosition(roster) {
+	let arr = ["C-F", "F", "F-G", "G-F", "G"];
+	for (let i = 1; i < roster.length - 1; i++) {
+		let min = i;
+		for (let j = i + 1; j < roster.length; j++) {
+			if (arr.indexOf(roster[j][1]) < arr.indexOf(roster[min][1])) {
+				min = j;
+			}
+		}
+		let temp = roster[min];
+		roster[min] = roster[i];
+		roster[i] = temp;
+	}
+}
+
+function sortByBirthday(roster) {
+	for (let i = 1; i < roster.length - 1; i++) {
+		let min = i;
+		for (let j = i + 1; j < roster.length; j++) {
+			if (getBirthYear(roster[j][7]) < getBirthYear(roster[min][7])) {
+				min = j;
+			}
+			else if (getBirthYear(roster[j][7]) == getBirthYear(roster[min][7]) &&
+							getBirthMonth(roster[j][7]) < getBirthMonth(roster[min][7])) {
+				min = j;
+			}
+		}
+		let temp = roster[min];
+		roster[min] = roster[i];
+		roster[i] = temp;
+	}
+}
+
+function maxSortByBirthday(roster) {
+	for (let i = 1; i < roster.length - 1; i++) {
+		let max = i;
+		for (let j = i + 1; j < roster.length; j++) {
+			if (getBirthYear(roster[j][7]) > getBirthYear(roster[max][7])) {
+				max = j;
+			}
+			else if (getBirthYear(roster[j][7]) == getBirthYear(roster[max][7]) &&
+							getBirthMonth(roster[j][7]) > getBirthMonth(roster[max][7])) {
+				max = j;
+			}
+		}
+		let temp = roster[max];
+		roster[max] = roster[i];
+		roster[i] = temp;
+	}
+}
+
+function getBirthYear(birthday) {
+	return birthday.substring(6);
+}
+
+function getBirthMonth(birthday) {
+	return birthday.substring(0, 3);
 }
 
 function getLastName(name) {
