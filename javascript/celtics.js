@@ -61,7 +61,7 @@ fetch('https://api-nba-v1.p.rapidapi.com/players?team=2&season=2022', options)
 			}
 		}
 
-		sort(completeRoster, 0);
+		sortByPosition(completeRoster);
 		
 		
 		var html = "<table><tr>";
@@ -129,6 +129,21 @@ function maxsort(roster, x) {
 		}
 		let temp = roster[max];
 		roster[max] = roster[i];
+		roster[i] = temp;
+	}
+}
+
+function sortByPosition(roster) {
+	let arr = ["G", "G-F", "F-G", "F", "C-F"];
+	for (let i = 1; i < roster.length - 1; i++) {
+		let min = i;
+		for (let j = i + 1; j < roster.length; j++) {
+			if (arr.indexOf(roster[j][1] < arr.indexOf(roster[j][1]) {
+				min = j;
+			}
+		}
+		let temp = roster[min];
+		roster[min] = roster[i];
 		roster[i] = temp;
 	}
 }
