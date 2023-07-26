@@ -90,13 +90,6 @@ bodyHtml += "</tbody>";
 var tableHtml = "<table id='sortable-table'>" + headerHtml + bodyHtml + "</table>";
 document.getElementById("container").innerHTML = tableHtml;
 
-const rows = document.querySelectorAll("tr[data-href]");
-rows.forEach(row => {
-	row.addEventListener("click", () => {
-		window.location.href = row.dataset.href;
-	});
-});
-
 // Function to rebuild only the table body after sorting
 function rebuildTableBody(roster) {
   const tableBody = document.querySelector('#sortable-table tbody');
@@ -146,7 +139,16 @@ headers.forEach((header) => {
     rebuildTableBody(completeRoster); // Rebuild the table body after sorting
   });
 });
-  })
+
+const rows = document.querySelectorAll("tr[data-href]");
+rows.forEach(row => {
+	row.addEventListener("click", () => {
+		window.location.href = row.dataset.href;
+	});
+});
+
+
+})
 	.catch(err => console.error(err));
 
 
