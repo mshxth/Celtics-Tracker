@@ -87,6 +87,13 @@ fetch('https://api-nba-v1.p.rapidapi.com/players?team=2&season=2022', options)
 		html += "</tr></table>";
 		document.getElementById("container").innerHTML = html;
 
+		const rows = document.querySelectorAll("tr[data-href]");
+		rows.forEach(row => {
+			row.addEventListener("click", () => {
+				window.location.href = row.dataset.href;
+			});
+		});
+
   })
 	.catch(err => console.error(err));
 
