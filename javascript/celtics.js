@@ -90,6 +90,14 @@ bodyHtml += "</tbody>";
 var tableHtml = "<table id='sortable-table'>" + headerHtml + bodyHtml + "</table>";
 document.getElementById("container").innerHTML = tableHtml;
 
+function handleRowClick(event) {
+  const target = event.target;
+  const href = target.closest('tr[data-href]');
+  if (href) {
+    window.location.href = href.dataset.href;
+  }
+}
+		
 // Function to rebuild only the table body after sorting
 function rebuildTableBody(roster) {
   const tableBody = document.querySelector('#sortable-table tbody');
@@ -104,6 +112,10 @@ function rebuildTableBody(roster) {
     }
     tableBody.appendChild(row);
   }
+  const tableRows = document.querySelectorAll('tr[data-href]');
+  tableRows.forEach(row => {
+    row.addEventListener('click', handleRowClick);
+  });
 }
 
 // Event listeners for each header
@@ -142,12 +154,10 @@ headers.forEach((header) => {
   });
 });
 
-const rows = document.querySelectorAll("tr[data-href]");
-rows.forEach(row => {
-	row.addEventListener("click", () => {
-		window.location.href = row.dataset.href;
-	});
-});
+ const tableRows = document.querySelectorAll('tr[data-href]');
+    tableRows.forEach(row => {
+      row.addEventListener('click', handleRowClick);
+    });
 
 
 })
