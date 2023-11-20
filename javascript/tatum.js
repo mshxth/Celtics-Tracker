@@ -6,7 +6,7 @@ const options = {
 	}
 };
 
-fetch('https://api-nba-v1.p.rapidapi.com/players/statistics?id=882&team=2&season=2022', options)
+fetch('https://api-nba-v1.p.rapidapi.com/players/statistics?id=882&team=2&season=2023', options)
 	.then(response => response.json())
 	.then(response => {
 		

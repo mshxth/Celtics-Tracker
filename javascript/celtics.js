@@ -53,10 +53,10 @@ fetch('https://api-nba-v1.p.rapidapi.com/players?team=2&season=2023', options)
 				tempPlayer.jersey = 0;
 			}
 			if (tempPlayer.name == "Jaylen Brown" || tempPlayer.name == "Jayson Tatum" ||
-					tempPlayer.name == "Marcus Smart" || tempPlayer.name == "Robert Williams III" ||
-					tempPlayer.name == "Al Horford" || tempPlayer.name == "Grant Williams" ||
-					tempPlayer.name == "Malcolm Brogdon" || tempPlayer.name == "Derrick White" ||
-					tempPlayer.name == "Payton Pritchard" || tempPlayer.name == "Blake Griffin") {
+					tempPlayer.name == "Luke Kornet" || tempPlayer.name == "Kristaps Porzingis" ||
+					tempPlayer.name == "Al Horford" || tempPlayer.name == "Jrue Holiday" ||
+					tempPlayer.name == "Sam Hauser" || tempPlayer.name == "Derrick White" ||
+					tempPlayer.name == "Payton Pritchard") {
 				completeRoster.push(tempPlayer.roster());
 			}
 		}
