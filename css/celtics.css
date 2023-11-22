@@ -1,11 +1,18 @@
+
 table {
   margin-left: 0.5%;
   width: 99%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 th {
   background-color: black;
   text-align: center;
+  color: white;
 }
 
 td {
@@ -29,10 +36,12 @@ p {
   margin-left: 0.5%;
   font-weight: bold;
   margin-top: 15px;
-  font-size: large; 
+  font-size: large;
 }
 
 h1 {
   margin-left: 0.5%;
 }
+
+
 

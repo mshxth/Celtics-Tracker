@@ -1,21 +1,26 @@
+
 table {
   margin-left: 0.5%;
   width: 99%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 th {
   background-color: black;
   text-align: center;
+  color: white;
 }
 
 td {
   text-align: center;
-  font-weight: bold;
 }
 
 tr {
   color: #007A33;
-  height: 50px;
 }
 
 tr:nth-child(even) {
@@ -25,14 +30,13 @@ tr:nth-child(even) {
 
 tr:hover {
   background-color: black;
-  cursor: pointer;
 }
 
 p {
   margin-left: 0.5%;
   font-weight: bold;
   margin-top: 15px;
-  font-size: large; 
+  font-size: large;
 }
 
 h1 {
@@ -41,14 +45,15 @@ h1 {
 
 /* Add a caret icon for the sorted header */
 .sorted::after {
-  content: "▼"; /* Upward-pointing caret (▲) for ascending sort */
+  content: "▲"; /* Upward-pointing caret (▲) for ascending sort */
   margin-left: 5px;
 }
 
 /* Add a caret icon for the sorted header */
 .sorted.desc::after {
-  content: "▲"; /* Downward-pointing caret (▼) for descending sort */
+  content: "▼"; /* Downward-pointing caret (▼) for descending sort */
   margin-left: 5px;
 }
+
 
 
