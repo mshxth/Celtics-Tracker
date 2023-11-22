@@ -33,6 +33,7 @@ tr:nth-child(even) {
 
 tr:hover {
   background-color: black;
+  cursor: pointer;
 }
 
 p {
